@@ -8,6 +8,28 @@ INPROGRESS_ORDERS = {}
 
 class ChatBotOperations:
     def __init__(self, payload: dict):
+        """
+        Initializes a new instance of the ChatBotOperations class.
+
+        Args:
+            payload (dict): A dictionary containing the payload data.
+
+        Initializes the following instance variables:
+            - self.intent (str): The display name of the intent.
+            - self.parameters (dict): The parameters of the query result.
+            - self.output_contexts (list): The output contexts of the query result.
+            - self.session_id (str): The session ID extracted from the output contexts.
+            - self.db_connection (DBOperations): An instance of the DBOperations class for database operations.
+
+        Retrieves the following environment variables:
+            - DB_HOST (str): The host of the database.
+            - DB_USER (str): The user of the database.
+            - DB_PASSWORD (str): The password of the database.
+            - DB_NAME (str): The name of the database.
+
+        Raises:
+            KeyError: If any of the required keys are missing in the payload dictionary.
+        """
         self.intent = payload['queryResult']['intent']['displayName']
         self.parameters = payload['queryResult']['parameters']
         self.output_contexts = payload['queryResult']['outputContexts']
@@ -23,6 +45,13 @@ class ChatBotOperations:
         
 
     def track_order(self):
+        """
+        Retrieves the status of an order from the `order_tracking` table in the database.
+
+        Returns:
+            dict: A dictionary containing the fulfillment messages for the order status.
+                  The fulfillment messages include the order status and the order ID.
+        """
         order_id = int(self.parameters['order_id'])
         order_status = self.db_connection.get_order_status(order_id)
         if order_status:
@@ -40,6 +69,13 @@ class ChatBotOperations:
 
 
     def complete_order(self):
+        """
+        Completes the order for the current session.
+
+        Returns:
+            dict: A dictionary containing the fulfillment messages for the order completion.
+                The fulfillment messages include the order status, order ID, and order total.
+        """
         if self.session_id not in INPROGRESS_ORDERS:
             fulfillment_text = "I'm having a trouble finding your order. Sorry! Can you place a new order please?"
         else:
@@ -66,6 +102,30 @@ class ChatBotOperations:
         ]}
 
     def add_to_order(self):
+        """
+        Adds food items to the ongoing order for the current session.
+
+        This method takes in the food items and quantities from the parameters
+        and checks if they are of the same length. If they are not, it sets
+        the fulfillment_text to indicate that the items and quantities need to
+        be specified clearly.
+
+        If the items and quantities are of the same length, it creates a new
+        dictionary from the zipped items and quantities. Then, it checks if
+        there is an ongoing order for the current session. If there is, it updates
+        the current order with the new items. If there is no ongoing order, it
+        creates a new order with the new items.
+
+        After updating the order, it retrieves the string representation of the
+        order and sets the fulfillment_text to indicate the items that have been
+        added to the order so far.
+
+        Finally, it prints the ongoing orders and returns a dictionary with the
+        fulfillment_text as the response.
+
+        Returns:
+            dict: A dictionary with the fulfillment_text as the response.
+        """
         food_items = self.parameters["food_item"]
         quantities = self.parameters["number"]
 
@@ -94,6 +154,12 @@ class ChatBotOperations:
         ]}
 
     def remove_from_order(self):
+        """
+        Removes items from the current order based on the provided parameters.
+
+        Returns:
+            dict: A dictionary containing the fulfillment messages. The fulfillment messages include information about the removed items and the remaining items in the order.
+        """
         if self.session_id not in INPROGRESS_ORDERS:
             return {"fulfillmentMessages": [
                     {
