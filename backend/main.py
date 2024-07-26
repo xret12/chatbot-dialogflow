@@ -9,11 +9,6 @@ load_dotenv()
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
 @app.post("/")
 async def handle_request(request: Request):
     """

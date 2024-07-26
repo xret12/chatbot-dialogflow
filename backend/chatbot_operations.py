@@ -6,6 +6,7 @@ import os
 # create a global dictionary
 INPROGRESS_ORDERS = {}
 
+
 class ChatBotOperations:
     def __init__(self, payload: dict):
         """
@@ -42,7 +43,6 @@ class ChatBotOperations:
         db_name = os.getenv('DB_NAME')
         self.db_connection = DBOperations(
             host=db_host, user=db_user, password=db_password, database=db_name)
-        
 
     def track_order(self):
         """
@@ -59,14 +59,15 @@ class ChatBotOperations:
         else:
             fulfillment_text = f"No order found with order ID: # {order_id}"
 
-        return {"fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [fulfillment_text]
+        return {
+            "fulfillmentText": fulfillment_text,
+            "fulfillmentMessages": [
+                {
+                    "text": {
+                        "text": [fulfillment_text]
+                    }
                 }
-            }
-        ]}
-
+            ]}
 
     def complete_order(self):
         """
@@ -85,7 +86,8 @@ class ChatBotOperations:
                 fulfillment_text = "Sorry, I couldn't process your order due to a backend error. " \
                     "Please place a new order again"
             else:
-                order_total = self.db_connection.get_total_order_price(order_id) 
+                order_total = self.db_connection.get_total_order_price(
+                    order_id)
 
                 fulfillment_text = f"Awesome. We have placed your order. " \
                     f"Here is your order id # {order_id}. " \
@@ -93,13 +95,15 @@ class ChatBotOperations:
 
             del INPROGRESS_ORDERS[self.session_id]
             print(INPROGRESS_ORDERS)
-        return {"fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [fulfillment_text]
+        return {
+            "fulfillmentText": fulfillment_text,
+            "fulfillmentMessages": [
+                {
+                    "text": {
+                        "text": [fulfillment_text]
+                    }
                 }
-            }
-        ]}
+            ]}
 
     def add_to_order(self):
         """
@@ -145,13 +149,15 @@ class ChatBotOperations:
                 INPROGRESS_ORDERS[self.session_id])
             fulfillment_text = f"So far you have: {order_str}. Do you need anything else?"
             print(INPROGRESS_ORDERS)
-        return {"fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [fulfillment_text]
+        return {
+            "fulfillmentText": fulfillment_text,
+            "fulfillmentMessages": [
+                {
+                    "text": {
+                        "text": [fulfillment_text]
+                    }
                 }
-            }
-        ]}
+            ]}
 
     def remove_from_order(self):
         """
@@ -183,7 +189,7 @@ class ChatBotOperations:
                 del current_order[item]
 
         if len(removed_items) > 0:
-            fulfillment_text = f'Removed {",".join(removed_items)} from your order!'
+            fulfillment_text = f'Removed {", ".join(removed_items)} from your order!'
 
         if len(no_such_items) > 0:
             fulfillment_text = f' Your current order does not have {",".join(no_such_items)}'
@@ -194,10 +200,12 @@ class ChatBotOperations:
             order_str = utils.get_str_from_food_dict(current_order)
             fulfillment_text += f" Here is what is left in your order: {order_str}"
         print(INPROGRESS_ORDERS)
-        return {"fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [fulfillment_text]
+        return {
+            "fulfillmentText": fulfillment_text,
+            "fulfillmentMessages": [
+                {
+                    "text": {
+                        "text": [fulfillment_text]
+                    }
                 }
-            }
-        ]}
+            ]}
