@@ -1,0 +1,90 @@
+
+Default Welcome Intent
+======================
+Text response:  Hello, How can I help you? You can say "New Order" or "Track Order"
+				Good day! What can I do for you today? You can say "New Order" or "Track Order"
+				Greetings! How can I assist? You can say "New Order" or "Track Order"
+
+				
+Default Fallback Intent
+========================
+Text Response: I didn't understand. You can say 'New Order' or 'Track Order'. Also, in a new order, please mention only items from our available menu: Lumpia, Adobo, Sisig, Pancit, Kare-Kare, and Sinigang. Also specify a quantity for each item for example: "One sinigang and 2 adobo."				
+
+
+Intent= new.order
+=================
+new order
+Place new order
+
+	Text Response = 
+		Ok, starting a new order. You can say things like "I want two pancit and one lumpia". Make sure to specify a quantity for every food item! Also, we have only the following items on our menu: Lumpia, Adobo, Sisig, Pancit, Kare-Kare, and Sinigang.
+
+		Starting new order. Specify food items and quantities. For example, you can say, "I would like to order two pancit and one lumpia. Also, we have only the following items on our menu: Lumpia, Adobo, Sisig, Pancit, Kare-Kare, and Sinigang.
+
+Intent= order.add - context: ongoing-order
+==========================================
+Give me 2 plates of pancit, one sisig
+I'd like to order two plates of pancit,  one sinigang, and 3 lumpia, please.
+Can you please get me two servings of adobo?
+Please prepare 2 portions of sisig, along with one pancit and 1 lumpia for me
+3 kare kare, 2 adobo, 1 lumpia
+Can I get 2 plates of pancit, along with one lumpia?
+I'll take 2 orders of sinignag and 2 adobo, if you don't mind
+I want 1 adobo, 2 kare-kare and one sisig, do it fast plz
+In addition, add 1 lumpia and 2 adobo
+Moreover, include 2 sisig
+Also, please give me 2 sinigang
+Additionally, I'd like 2 lumpia.
+2 lumpia and ok lets add one adobo too
+3 pansit
+Oh yes, add one kare-kare as well
+
+Intent= order.complete - context: ongoing-order
+==========================================
+Nope
+That's all I needed
+Done ordering it
+Place an order
+Done
+That's it
+
+Intent= order.remove - context: ongoing-order
+==========================================
+No lumpia and sinigang in my order. please remove.
+Kindly take sinigang and pansit off the order, please.
+I'd like to exclude lumpia and adobo, please
+I no longer want the pancit in my order, please remove it
+Kindly exclude the kare kare from my order
+I would like to remove the sisig from my order
+Please take the sisig off my order
+delete lumpia from my order
+hey, plz get rid of sinigang and adobo
+I don't want kare kare
+remove sinigang from my order
+can you remove lumpia?
+
+Intent= track.order
+===================
+
+check the status of my order
+track order
+track existing order
+
+Text response:
+	Definitely. What is your order id?
+	Sure. Please enter your order id.
+	Definitely. What is your order id?
+
+
+Intent= track.order - context: ongoing-tracking
+==================================================
+how about 32
+how about 40?
+here it is - 63321
+here you go: 123
+here is my order number 675
+id is 453
+here is my order id # 341
+7890
+123
+345
