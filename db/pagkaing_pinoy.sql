@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `pandeyji_eatery` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `pandeyji_eatery`;
+CREATE DATABASE  IF NOT EXISTS `pagkaing_pinoy` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `pagkaing_pinoy`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: localhost    Database: pandeyji_eatery
+-- Host: localhost    Database: pagkaing_pinoy
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -38,7 +38,7 @@ CREATE TABLE `food_items` (
 
 LOCK TABLES `food_items` WRITE;
 /*!40000 ALTER TABLE `food_items` DISABLE KEYS */;
-INSERT INTO `food_items` VALUES (1,'Pav Bhaji',6.00),(2,'Chole Bhature',7.00),(3,'Pizza',8.00),(4,'Mango Lassi',5.00),(5,'Masala Dosa',6.00),(6,'Vegetable Biryani',9.00),(7,'Vada Pav',4.00),(8,'Rava Dosa',7.00),(9,'Samosa',5.00);
+INSERT INTO `food_items` VALUES (1,'Lumpia',50.00),(2,'Adobo',100.00),(3,'Sisig',85.00),(4,'Pancit',75.00),(5,'Kare-Kare',125.00),(6,'Sinigang',100.00);
 /*!40000 ALTER TABLE `food_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (40,1,2,12.00),(40,3,1,8.00),(41,4,3,15.00),(41,6,2,18.00),(41,9,4,20.00);
+INSERT INTO `orders` VALUES (40,1,2,100.00),(40,3,1,85.00),(41,4,2,150.00),(41,6,3,300.00);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,4 +209,3 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-14 17:55:58
