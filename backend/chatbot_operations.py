@@ -198,7 +198,7 @@ class ChatBotOperations:
             fulfillment_text += " Your order is empty!"
         else:
             order_str = utils.get_str_from_food_dict(current_order)
-            fulfillment_text += f" Here is what is left in your order: {order_str}"
+            fulfillment_text += f" Here is what is left in your order: {order_str}. Anything else?"
         print(INPROGRESS_ORDERS)
         return {
             "fulfillmentText": fulfillment_text,
