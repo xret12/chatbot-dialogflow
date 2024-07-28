@@ -70,6 +70,10 @@ This project is a Google Dialogflow-powered chatbot order management system that
 
 
 ### 3. Run backend server
+- Install dependencies first
+```
+pip install -r requirements.txt
+```
 - Input the command below to run the FastAPI app. Ensure that run the command from inside the `/backend` directory
 ```
 uvicorn main:app
