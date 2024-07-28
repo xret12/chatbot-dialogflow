@@ -11,7 +11,7 @@ Default Fallback Intent
 Text Response: I didn't understand. You can say 'New Order' or 'Track Order'. Also, in a new order, please mention only items from our available menu: Lumpia, Adobo, Sisig, Pancit, Kare-Kare, and Sinigang. Also specify a quantity for each item for example: "One sinigang and 2 adobo."				
 
 
-Intent= new.order
+Intent = new-order
 =================
 new order
 Place new order
@@ -21,7 +21,7 @@ Place new order
 
 		Starting new order. Specify food items and quantities. For example, you can say, "I would like to order two pancit and one lumpia. Also, we have only the following items on our menu: Lumpia, Adobo, Sisig, Pancit, Kare-Kare, and Sinigang.
 
-Intent= order.add - context: ongoing-order
+Intent = order-add (context: ongoing-order)
 ==========================================
 Give me 2 plates of pancit, one sisig
 I'd like to order two plates of pancit,  one sinigang, and 3 lumpia, please.
@@ -39,7 +39,7 @@ Additionally, I'd like 2 lumpia.
 3 pansit
 Oh yes, add one kare-kare as well
 
-Intent= order.complete - context: ongoing-order
+Intent = order-complete (context: ongoing-order)
 ==========================================
 Nope
 That's all I needed
@@ -48,7 +48,7 @@ Place an order
 Done
 That's it
 
-Intent= order.remove - context: ongoing-order
+Intent = order-remove (context: ongoing-order)
 ==========================================
 No lumpia and sinigang in my order. please remove.
 Kindly take sinigang and pansit off the order, please.
@@ -63,7 +63,7 @@ I don't want kare kare
 remove sinigang from my order
 can you remove lumpia?
 
-Intent= track.order
+Intent = track-order
 ===================
 
 check the status of my order
@@ -76,7 +76,7 @@ Text response:
 	Definitely. What is your order id?
 
 
-Intent= track.order - context: ongoing-tracking
+Intent = track-order (context: ongoing-tracking)
 ==================================================
 how about 32
 how about 40?
