@@ -17,7 +17,7 @@ This project is a Google Dialogflow-powered chatbot order management system that
 - Retrieve total order prices
 
 ## How It Works
-1. The user enters an order through the UI using natural language and this initiates Dialogflow to create a POST request based to the backend server based on the prompt context.
+1. The user enters an order through the UI using natural language and this initiates Dialogflow to create a POST request to the backend server based on the prompt context.
 2. The system uses FastAPI to create an API endpoint that receives POST requests.
 3. Incoming requests are processed by the `ChatBotOperations` class, which handles different intents:
    - Adding items to an order
